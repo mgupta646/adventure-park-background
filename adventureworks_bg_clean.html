@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AdventureWorks Dashboard Background</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:100%;height:100%;overflow:hidden;font-family:'Segoe UI',system-ui,sans-serif}
+
+  .scene{width:100vw;height:100vh;position:relative;overflow:hidden}
+  .sky{position:absolute;inset:0;background:linear-gradient(180deg,#060318 0%,#0d0630 20%,#1a1060 45%,#2a1a7a 54%,#1e3a2a 55%,#16502e 68%,#0e3a20 100%)}
+  .stars-layer{position:absolute;top:0;left:0;width:100%;height:55%;pointer-events:none}
+  .ground{position:absolute;bottom:0;left:0;right:0;height:44%;background:linear-gradient(180deg,#1e6b3a 0%,#155228 40%,#0e3d1e 100%)}
+  .ground-path{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:160px;height:100%;background:rgba(139,115,85,.35);border-radius:8px}
+
+  @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  .ferris-ring{animation:spin 12s linear infinite;transform-origin:65px 65px}
+
+  @keyframes float-up{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-18px) rotate(3deg)}}
+  .balloon-g{animation:float-up ease-in-out infinite}
+
+  @keyframes wave{0%,100%{skewX(0deg)}50%{transform:skewX(-8deg)}}
+
+  @keyframes drift{from{transform:translateX(-200px)}to{transform:translateX(110vw)}}
+  .cloud{position:absolute;background:rgba(255,255,255,.055);border-radius:40px;animation:drift linear infinite}
+
+  @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .ticker-inner{display:flex;gap:40px;animation:tick 28s linear infinite;white-space:nowrap;width:max-content}
+  .ticker{position:absolute;bottom:10px;left:0;right:0;overflow:hidden;height:22px;z-index:5}
+  .ticker-item{font-size:11px;color:rgba(255,255,255,.22);letter-spacing:.1em}
+
+  /* Phone */
+  .phone-outer{position:absolute;left:2.2%;top:50%;transform:translateY(-50%);z-index:20;filter:drop-shadow(0 24px 64px rgba(0,0,0,.85))}
+  .phone-frame{width:210px;background:#080810;border-radius:38px;border:3px solid #252535;overflow:hidden;position:relative}
+  .phone-frame::before{content:'';position:absolute;inset:0;border-radius:35px;border:1px solid rgba(255,255,255,.07);pointer-events:none;z-index:10}
+  .phone-notch{width:82px;height:17px;background:#080810;border-radius:0 0 14px 14px;margin:0 auto;position:relative;z-index:11}
+  .notch-cam{width:9px;height:9px;background:#111;border-radius:50%;border:1.5px solid #1e1e2e;position:absolute;right:15px;top:4px}
+  .notch-sensor{width:3px;height:3px;background:#1a3a5a;border-radius:50%;position:absolute;right:11px;top:7px}
+  .phone-screen{background:#080814;padding:10px 12px 12px;min-height:480px;display:flex;flex-direction:column}
+  .status-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;padding:0 2px}
+  .status-time{color:#fff;font-size:14px;font-weight:600;letter-spacing:-.3px}
+  .status-icons{display:flex;gap:6px;align-items:center}
+  .app-title{text-align:center;margin-bottom:18px}
+  .app-title-text{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7c5cfc}
+  .app-title-sub{font-size:8px;color:rgba(255,255,255,.22);letter-spacing:.06em;margin-top:2px}
+
+  /* Empty app grid — just placeholder slots for Tableau buttons */
+  .btn-row{display:flex;flex-direction:column;gap:8px;padding:0 2px;flex:1;justify-content:center}
+  .btn-slot{width:100%;height:44px;border-radius:12px;border:1px dashed rgba(255,255,255,.08);background:rgba(255,255,255,.02)}
+  .home-indicator{width:48px;height:5px;background:rgba(255,255,255,.15);border-radius:3px;margin:14px auto 0}
+
+  /* Side buttons */
+  .side-btn{position:absolute;background:#1a1a2a;border-radius:2px}
+
+
+</style>
+</head>
+<body>
+<div class="scene">
+
+  <div class="sky"></div>
+
+  <!-- STARS + MOON -->
+  <svg class="stars-layer" viewBox="0 0 1400 600" preserveAspectRatio="xMidYMid slice">
+    <circle cx="32" cy="18" r="1.2" fill="#fff" opacity=".9"/>
+    <circle cx="95" cy="52" r=".8" fill="#fff" opacity=".7"/>
+    <circle cx="158" cy="12" r="1.5" fill="#fff" opacity=".85"/>
+    <circle cx="224" cy="74" r="1" fill="#fff" opacity=".6"/>
+    <circle cx="310" cy="30" r=".9" fill="#fff" opacity=".8"/>
+    <circle cx="390" cy="58" r="1.3" fill="#fff" opacity=".7"/>
+    <circle cx="455" cy="22" r=".8" fill="#fff" opacity=".9"/>
+    <circle cx="520" cy="80" r="1.1" fill="#fff" opacity=".65"/>
+    <circle cx="610" cy="14" r="1.4" fill="#fff" opacity=".8"/>
+    <circle cx="680" cy="45" r=".9" fill="#fff" opacity=".75"/>
+    <circle cx="755" cy="28" r="1.2" fill="#fff" opacity=".85"/>
+    <circle cx="830" cy="66" r=".8" fill="#fff" opacity=".6"/>
+    <circle cx="910" cy="18" r="1.5" fill="#fff" opacity=".9"/>
+    <circle cx="980" cy="50" r="1" fill="#fff" opacity=".7"/>
+    <circle cx="1050" cy="32" r=".9" fill="#fff" opacity=".8"/>
+    <circle cx="1130" cy="70" r="1.3" fill="#fff" opacity=".65"/>
+    <circle cx="1210" cy="20" r=".8" fill="#fff" opacity=".85"/>
+    <circle cx="1290" cy="55" r="1.1" fill="#fff" opacity=".75"/>
+    <circle cx="1360" cy="35" r="1.4" fill="#fff" opacity=".8"/>
+    <circle cx="60" cy="110" r="1" fill="#fff" opacity=".55"/>
+    <circle cx="140" cy="140" r=".8" fill="#fff" opacity=".7"/>
+    <circle cx="220" cy="100" r="1.2" fill="#fff" opacity=".6"/>
+    <circle cx="300" cy="160" r=".9" fill="#fff" opacity=".5"/>
+    <circle cx="400" cy="120" r="1.4" fill="#fff" opacity=".7"/>
+    <circle cx="480" cy="155" r=".8" fill="#fff" opacity=".6"/>
+    <circle cx="560" cy="105" r="1.1" fill="#fff" opacity=".75"/>
+    <circle cx="650" cy="145" r="1" fill="#fff" opacity=".55"/>
+    <circle cx="740" cy="115" r=".9" fill="#fff" opacity=".65"/>
+    <circle cx="820" cy="160" r="1.3" fill="#fff" opacity=".5"/>
+    <circle cx="900" cy="110" r=".8" fill="#fff" opacity=".7"/>
+    <circle cx="990" cy="140" r="1.2" fill="#fff" opacity=".6"/>
+    <circle cx="1070" cy="100" r="1" fill="#fff" opacity=".75"/>
+    <circle cx="1160" cy="155" r=".9" fill="#fff" opacity=".55"/>
+    <circle cx="1250" cy="120" r="1.4" fill="#fff" opacity=".7"/>
+    <circle cx="1330" cy="145" r=".8" fill="#fff" opacity=".6"/>
+    <circle cx="50" cy="200" r=".8" fill="#fff" opacity=".4"/>
+    <circle cx="180" cy="225" r="1.1" fill="#fff" opacity=".5"/>
+    <circle cx="350" cy="195" r=".9" fill="#fff" opacity=".45"/>
+    <circle cx="530" cy="230" r="1.3" fill="#fff" opacity=".4"/>
+    <circle cx="720" cy="205" r=".8" fill="#fff" opacity=".5"/>
+    <circle cx="900" cy="220" r="1" fill="#fff" opacity=".4"/>
+    <circle cx="1080" cy="195" r=".9" fill="#fff" opacity=".45"/>
+    <circle cx="1260" cy="215" r="1.2" fill="#fff" opacity=".4"/>
+    <!-- Twinklers -->
+    <circle cx="200" cy="38" r="2" fill="#fff" opacity=".95"><animate attributeName="opacity" values=".95;.3;.95" dur="2.8s" repeatCount="indefinite"/></circle>
+    <circle cx="620" cy="55" r="1.8" fill="#fffde0" opacity=".9"><animate attributeName="opacity" values=".9;.2;.9" dur="3.5s" repeatCount="indefinite"/></circle>
+    <circle cx="1050" cy="42" r="2" fill="#fff" opacity=".9"><animate attributeName="opacity" values=".9;.25;.9" dur="2.2s" repeatCount="indefinite"/></circle>
+    <circle cx="780" cy="25" r="1.5" fill="#e0f0ff" opacity=".85"><animate attributeName="opacity" values=".85;.2;.85" dur="4s" repeatCount="indefinite"/></circle>
+    <circle cx="380" cy="80" r="1.6" fill="#fff" opacity=".8"><animate attributeName="opacity" values=".8;.15;.8" dur="3.1s" repeatCount="indefinite"/></circle>
+    <!-- Moon -->
+    <circle cx="1220" cy="78" r="52" fill="#fffde0" opacity=".95"/>
+    <circle cx="1205" cy="72" r="42" fill="#0d0630"/>
+    <!-- Shooting star -->
+    <line x1="100" y1="30" x2="280" y2="100" stroke="#fff" stroke-width="1.5" opacity="0" stroke-linecap="round">
+      <animate attributeName="opacity" values="0;0;0;0;0;0;0;1;0" dur="9s" repeatCount="indefinite"/>
+    </line>
+  </svg>
+
+  <!-- CLOUDS -->
+  <div class="cloud" style="top:7%;width:190px;height:44px;animation-duration:48s;animation-delay:-12s"></div>
+  <div class="cloud" style="top:15%;width:130px;height:30px;animation-duration:62s;animation-delay:-35s;opacity:.04"></div>
+  <div class="cloud" style="top:22%;width:240px;height:52px;animation-duration:40s;animation-delay:-6s;opacity:.05"></div>
+
+  <!-- MOUNTAINS -->
+  <svg style="position:absolute;bottom:44%;left:0;width:100%;height:200px" viewBox="0 0 1400 200" preserveAspectRatio="none">
+    <polygon points="0,200 120,40 240,200" fill="#0a2e14" opacity=".95"/>
+    <polygon points="80,200 220,18 360,200" fill="#123d1e"/>
+    <polygon points="200,200 380,55 560,200" fill="#0a2e14" opacity=".9"/>
+    <polygon points="360,200 520,28 680,200" fill="#185a28" opacity=".85"/>
+    <polygon points="550,200 700,60 850,200" fill="#0a2e14" opacity=".92"/>
+    <polygon points="720,200 870,22 1020,200" fill="#123d1e"/>
+    <polygon points="900,200 1050,50 1200,200" fill="#0a2e14" opacity=".9"/>
+    <polygon points="1100,200 1250,33 1400,200" fill="#185a28" opacity=".88"/>
+    <polygon points="1280,200 1400,58 1400,200" fill="#0a2e14"/>
+    <polygon points="120,40 142,72 98,72" fill="rgba(255,255,255,.14)"/>
+    <polygon points="220,18 248,56 192,56" fill="rgba(255,255,255,.17)"/>
+    <polygon points="520,28 550,66 490,66" fill="rgba(255,255,255,.14)"/>
+    <polygon points="870,22 900,60 840,60" fill="rgba(255,255,255,.17)"/>
+    <polygon points="1250,33 1280,70 1220,70" fill="rgba(255,255,255,.14)"/>
+  </svg>
+
+  <!-- GROUND -->
+  <div class="ground">
+    <div class="ground-path"></div>
+    <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 1400 380" preserveAspectRatio="none">
+      <ellipse cx="100" cy="20" rx="40" ry="18" fill="#1a7a3a" opacity=".7"/>
+      <ellipse cx="78" cy="24" rx="28" ry="14" fill="#22913f" opacity=".6"/>
+      <ellipse cx="300" cy="18" rx="50" ry="20" fill="#1a7a3a" opacity=".65"/>
+      <ellipse cx="900" cy="22" rx="44" ry="18" fill="#1a7a3a" opacity=".7"/>
+      <ellipse cx="1200" cy="20" rx="38" ry="16" fill="#1a7a3a" opacity=".65"/>
+      <ellipse cx="1280" cy="24" rx="28" ry="14" fill="#22913f" opacity=".55"/>
+      <rect x="420" y="60" width="50" height="6" rx="2" fill="#8b5e3c" opacity=".6"/>
+      <rect x="424" y="66" width="6" height="14" rx="1" fill="#6b4423" opacity=".5"/>
+      <rect x="460" y="66" width="6" height="14" rx="1" fill="#6b4423" opacity=".5"/>
+      <rect x="850" y="60" width="50" height="6" rx="2" fill="#8b5e3c" opacity=".6"/>
+      <rect x="854" y="66" width="6" height="14" rx="1" fill="#6b4423" opacity=".5"/>
+      <rect x="890" y="66" width="6" height="14" rx="1" fill="#6b4423" opacity=".5"/>
+      <rect x="200" y="10" width="4" height="70" fill="#888" opacity=".5"/>
+      <ellipse cx="202" cy="10" rx="10" ry="4" fill="#ffd700" opacity=".4"/>
+      <rect x="600" y="8" width="4" height="72" fill="#888" opacity=".5"/>
+      <ellipse cx="602" cy="8" rx="10" ry="4" fill="#ffd700" opacity=".4"/>
+      <rect x="1050" y="10" width="4" height="70" fill="#888" opacity=".5"/>
+      <ellipse cx="1052" cy="10" rx="10" ry="4" fill="#ffd700" opacity=".4"/>
+      <circle cx="350" cy="30" r="5" fill="#ff6b9d" opacity=".7"/>
+      <circle cx="360" cy="25" r="4" fill="#ff8fab" opacity=".65"/>
+      <circle cx="370" cy="32" r="4" fill="#ffb3c6" opacity=".7"/>
+      <circle cx="750" cy="28" r="5" fill="#ffd700" opacity=".7"/>
+      <circle cx="762" cy="22" r="4" fill="#ffec6e" opacity=".65"/>
+      <circle cx="740" cy="26" r="4" fill="#ffd700" opacity=".6"/>
+    </svg>
+    <div class="ticker">
+      <div class="ticker-inner">
+        <span class="ticker-item">TOTAL REVENUE: $49.8M</span>
+        <span class="ticker-item">PROFIT: $20.9M</span>
+        <span class="ticker-item">ORDERS: 25,164</span>
+        <span class="ticker-item">MARGIN: 41.97%</span>
+        <span class="ticker-item">TOP MARKET: USA $15.9M</span>
+        <span class="ticker-item">BIKES: 88% OF REVENUE</span>
+        <span class="ticker-item">YOY GROWTH 2016: +42%</span>
+        <span class="ticker-item">TOTAL REVENUE: $49.8M</span>
+        <span class="ticker-item">PROFIT: $20.9M</span>
+        <span class="ticker-item">ORDERS: 25,164</span>
+        <span class="ticker-item">MARGIN: 41.97%</span>
+        <span class="ticker-item">TOP MARKET: USA $15.9M</span>
+        <span class="ticker-item">BIKES: 88% OF REVENUE</span>
+        <span class="ticker-item">YOY GROWTH 2016: +42%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FERRIS WHEEL -->
+  <svg style="position:absolute;bottom:44%;right:12%;width:130px;height:130px" viewBox="0 0 130 130">
+    <line x1="65" y1="125" x2="65" y2="108" stroke="#888" stroke-width="3"/>
+    <line x1="50" y1="125" x2="80" y2="125" stroke="#888" stroke-width="3"/>
+    <g class="ferris-ring">
+      <circle cx="65" cy="65" r="50" fill="none" stroke="#f59e0b" stroke-width="3" opacity=".8"/>
+      <line x1="65" y1="15" x2="65" y2="115" stroke="#f59e0b" stroke-width="1.5" opacity=".4"/>
+      <line x1="15" y1="65" x2="115" y2="65" stroke="#f59e0b" stroke-width="1.5" opacity=".4"/>
+      <line x1="30" y1="30" x2="100" y2="100" stroke="#f59e0b" stroke-width="1.5" opacity=".3"/>
+      <line x1="100" y1="30" x2="30" y2="100" stroke="#f59e0b" stroke-width="1.5" opacity=".3"/>
+      <rect x="56" y="7" width="18" height="12" rx="3" fill="#ef4444" opacity=".9"/>
+      <rect x="56" y="111" width="18" height="12" rx="3" fill="#3b82f6" opacity=".9"/>
+      <rect x="7" y="59" width="18" height="12" rx="3" fill="#22c55e" opacity=".9"/>
+      <rect x="105" y="59" width="18" height="12" rx="3" fill="#f59e0b" opacity=".9"/>
+      <rect x="27" y="27" width="14" height="10" rx="2" fill="#a855f7" opacity=".85"/>
+      <rect x="89" y="27" width="14" height="10" rx="2" fill="#f43f5e" opacity=".85"/>
+      <rect x="27" y="93" width="14" height="10" rx="2" fill="#06b6d4" opacity=".85"/>
+      <rect x="89" y="93" width="14" height="10" rx="2" fill="#84cc16" opacity=".85"/>
+    </g>
+    <circle cx="65" cy="65" r="7" fill="#f59e0b"/>
+    <circle cx="65" cy="65" r="4" fill="#ffd700"/>
+  </svg>
+
+  <!-- ROLLER COASTER -->
+  <svg style="position:absolute;bottom:44%;left:5%;width:160px;height:100px" viewBox="0 0 160 100">
+    <path d="M0,80 Q20,20 50,40 Q80,60 100,10 Q120,0 140,30 Q150,40 160,35" fill="none" stroke="#a855f7" stroke-width="4" stroke-linecap="round" opacity=".7"/>
+    <path d="M0,84 Q20,24 50,44 Q80,64 100,14 Q120,4 140,34 Q150,44 160,39" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+    <line x1="50" y1="44" x2="50" y2="100" stroke="#666" stroke-width="2" opacity=".4"/>
+    <line x1="100" y1="14" x2="100" y2="100" stroke="#666" stroke-width="2" opacity=".4"/>
+    <g>
+      <rect x="90" y="4" width="20" height="10" rx="3" fill="#ef4444" opacity=".9"/>
+      <animateMotion dur="6s" repeatCount="indefinite" path="M0,80 Q20,20 50,40 Q80,60 100,10 Q120,0 140,30 Q150,40 160,35"/>
+    </g>
+  </svg>
+
+  <!-- BALLOONS -->
+  <svg style="position:absolute;bottom:44%;left:48%;width:80px;height:120px" viewBox="0 0 80 120">
+    <g class="balloon-g" style="animation-duration:3s">
+      <ellipse cx="20" cy="30" rx="12" ry="15" fill="#ef4444" opacity=".85"/>
+      <line x1="20" y1="45" x2="25" y2="75" stroke="#aaa" stroke-width="1"/>
+    </g>
+    <g class="balloon-g" style="animation-duration:3.8s;animation-delay:.5s">
+      <ellipse cx="40" cy="20" rx="13" ry="16" fill="#f59e0b" opacity=".85"/>
+      <line x1="40" y1="36" x2="38" y2="75" stroke="#aaa" stroke-width="1"/>
+    </g>
+    <g class="balloon-g" style="animation-duration:3.2s;animation-delay:1s">
+      <ellipse cx="60" cy="28" rx="11" ry="14" fill="#7c5cfc" opacity=".85"/>
+      <line x1="60" y1="42" x2="52" y2="75" stroke="#aaa" stroke-width="1"/>
+    </g>
+    <line x1="25" y1="75" x2="52" y2="75" stroke="#aaa" stroke-width="1.5"/>
+    <circle cx="38" cy="78" r="3" fill="#888"/>
+  </svg>
+
+  <!-- PENNANT STRING -->
+  <svg style="position:absolute;bottom:44%;left:0;width:100%;height:30px" viewBox="0 0 1400 30" preserveAspectRatio="none">
+    <path d="M0,5 Q350,25 700,5 Q1050,25 1400,5" fill="none" stroke="#888" stroke-width="1" opacity=".4"/>
+    <polygon points="60,5 68,18 52,18" fill="#ef4444" opacity=".8"/>
+    <polygon points="120,8 128,21 112,21" fill="#f59e0b" opacity=".8"/>
+    <polygon points="180,5 188,18 172,18" fill="#22c55e" opacity=".8"/>
+    <polygon points="240,8 248,21 232,21" fill="#7c5cfc" opacity=".8"/>
+    <polygon points="300,5 308,18 292,18" fill="#ef4444" opacity=".8"/>
+    <polygon points="400,8 408,21 392,21" fill="#f43f5e" opacity=".8"/>
+    <polygon points="500,5 508,18 492,18" fill="#f59e0b" opacity=".8"/>
+    <polygon points="600,8 608,21 592,21" fill="#22c55e" opacity=".8"/>
+    <polygon points="700,5 708,18 692,18" fill="#7c5cfc" opacity=".8"/>
+    <polygon points="800,8 808,21 792,21" fill="#ef4444" opacity=".8"/>
+    <polygon points="900,5 908,18 892,18" fill="#f59e0b" opacity=".8"/>
+    <polygon points="1000,8 1008,21 992,21" fill="#22c55e" opacity=".8"/>
+    <polygon points="1100,5 1108,18 1092,18" fill="#7c5cfc" opacity=".8"/>
+    <polygon points="1200,8 1208,21 1192,21" fill="#ef4444" opacity=".8"/>
+    <polygon points="1300,5 1308,18 1292,18" fill="#f59e0b" opacity=".8"/>
+  </svg>
+
+  <!-- FOUNTAIN -->
+  <svg style="position:absolute;bottom:44%;left:50%;transform:translateX(-50%);width:80px;height:60px" viewBox="0 0 80 60">
+    <rect x="28" y="40" width="24" height="18" rx="4" fill="#2563eb" opacity=".6"/>
+    <ellipse cx="40" cy="40" rx="30" ry="8" fill="#1d4ed8" opacity=".5"/>
+    <path d="M40,40 Q30,10 20,30" fill="none" stroke="#60a5fa" stroke-width="1.5" opacity=".7"><animate attributeName="opacity" values=".7;.3;.7" dur="1.5s" repeatCount="indefinite"/></path>
+    <path d="M40,40 Q50,8 60,28" fill="none" stroke="#93c5fd" stroke-width="1.5" opacity=".65"><animate attributeName="opacity" values=".65;.25;.65" dur="1.8s" repeatCount="indefinite"/></path>
+    <path d="M40,40 Q40,5 40,25" fill="none" stroke="#bfdbfe" stroke-width="2" opacity=".8"><animate attributeName="opacity" values=".8;.35;.8" dur="1.2s" repeatCount="indefinite"/></path>
+    <path d="M40,40 Q25,15 15,35" fill="none" stroke="#60a5fa" stroke-width="1" opacity=".5"><animate attributeName="opacity" values=".5;.15;.5" dur="2s" repeatCount="indefinite"/></path>
+    <path d="M40,40 Q55,12 65,32" fill="none" stroke="#93c5fd" stroke-width="1" opacity=".5"><animate attributeName="opacity" values=".5;.2;.5" dur="1.6s" repeatCount="indefinite"/></path>
+  </svg>
+
+  <!-- PHONE (empty — for Tableau show/hide buttons) -->
+  <div class="phone-outer">
+    <div style="position:relative">
+      <div class="side-btn" style="right:-5px;top:80px;width:4px;height:34px"></div>
+      <div class="side-btn" style="right:-5px;top:124px;width:4px;height:22px"></div>
+      <div class="side-btn" style="left:-5px;top:90px;width:4px;height:22px"></div>
+      <div class="side-btn" style="left:-5px;top:122px;width:4px;height:22px"></div>
+      <div class="phone-frame">
+        <div class="phone-notch">
+          <div class="notch-cam"></div>
+          <div class="notch-sensor"></div>
+        </div>
+        <div class="phone-screen">
+          <div class="status-bar">
+            <span class="status-time">9:41</span>
+            <div class="status-icons">
+              <svg width="16" height="11" viewBox="0 0 16 11"><rect x="0" y="4" width="3" height="7" rx="1" fill="#fff"/><rect x="4.5" y="2.5" width="3" height="8.5" rx="1" fill="#fff"/><rect x="9" y="0" width="3" height="11" rx="1" fill="#fff"/><rect x="13.5" y="0" width="2.5" height="11" rx="1" fill="#fff" opacity=".3"/></svg>
+              <svg width="14" height="11" viewBox="0 0 24 14"><path d="M2 7 Q12 0 22 7" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M5 10 Q12 4 19 10" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="13" r="1.5" fill="#fff"/></svg>
+              <svg width="22" height="11" viewBox="0 0 28 12"><rect x="0" y="1" width="23" height="10" rx="2.5" fill="none" stroke="#fff" stroke-width="1.5"/><rect x="1.5" y="2.5" width="16" height="7" rx="1.5" fill="#fff"/><rect x="24" y="3.5" width="3" height="5" rx="1.5" fill="#fff" opacity=".5"/></svg>
+            </div>
+          </div>
+          <div class="app-title">
+            <div class="app-title-text">AdventureWorks</div>
+            <div class="app-title-sub">Analytics Dashboard</div>
+          </div>
+          <!-- Horizontal button slots — place Tableau show/hide buttons here -->
+          <div class="btn-row">
+            <div class="btn-slot"></div>
+            <div class="btn-slot"></div>
+            <div class="btn-slot"></div>
+            <div class="btn-slot"></div>
+            <div class="btn-slot"></div>
+            <div class="btn-slot"></div>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Viz area frame for Tableau sheets -->
+  <div style="position:absolute;left:240px;top:14px;right:14px;bottom:14px;z-index:10;border:1px dashed rgba(124,92,252,.18);border-radius:18px;background:rgba(8,6,24,.35)"></div>
+
+</div>
+</body>
+</html>
